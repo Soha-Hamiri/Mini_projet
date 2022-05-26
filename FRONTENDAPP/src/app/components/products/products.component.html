@@ -1,0 +1,49 @@
+
+
+<form (ngSubmit)="insertData()">
+    <div class="form-group">
+        <label for="nom">Nom</label>
+       <input type="text" name="nom" class="text form-control" [(ngModel)]="product.nom">
+    </div>
+   
+    <div class="form-group">
+        <label for="quantite">Quantité</label>
+       <input type="text" name="quantite" class="text form-control" [(ngModel)]="product.quantite">
+    </div>
+    <div class="form-group">
+        <label for="prix">Prix</label>
+       <input type="text" name="prix" class="text form-control" [(ngModel)]="product.prix">
+    </div>
+    <button class="btn btn-dark btn -sm mt-4">Ajouter</button>
+</form>
+
+
+    
+<div class="input-group">
+    <div class="form-outline">
+      <input type="search" id="form1" class="form-control" [(ngModel)]="searchText" placeholder="Rechercher par Nom" />
+    </div>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">id</th>
+            <th scope="col">nom</th>
+            <th scope="col">Quantité</th>
+            <th scope="col">Prix</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let prod of products  | search:searchText">
+            <th scope="row">{{prod.id}}</th>
+            <td>{{prod.nom}}</td>
+            <td>{{prod.quantite}}</td>
+            <td>{{prod.prix}}</td>
+            <td><button class="btn btn-danger btn-sm" (click)="deleteData(prod.id)">Supprimer</button></td>
+            <td><button class="btn btn-warning btn-sm mx-2" routerLink="edit/{{prod.id}}">Mise à jour</button></td>
+            <td><button class="btn btn-info btn-sm mx-2" routerLink="view/{{prod.id}}">afficher</button></td>
+       
+        </tr>
+    </tbody>
